@@ -1,0 +1,167 @@
+/* Reset de estilos y fuente general */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilo general del body */
+body {
+  background-color: #002b2e;
+  line-height: 1.6;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Título */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ffecea;
+}
+
+/* Formulario */
+form {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  border-radius: 5px;
+}
+
+/* Input de tarea */
+form input {
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 10px 10px 0 0;
+  border: none;
+  font-size: 1.2rem;
+  font-family: cursive;
+  outline-color: #d78988;
+}
+
+input::placeholder {
+  color: rgb(179, 176, 176);
+}
+
+/* Contenedor de la lista */
+.list {
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+/* Estilo de cada tarea */
+.list li {
+  list-style: none;
+  font-family: cursive;
+  position: relative;
+  padding: 20px;
+  margin-bottom: 10px; /* Separación entre tareas */
+  border-radius: 5px; /* Bordes redondeados */
+  background-color: #fff; /* Fondo blanco para destacar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+}
+
+/* Borde superior de cada tarea */
+.list li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -8%;
+  width: 8%;
+  height: 3px;
+  background-color: #d78988;
+}
+
+.list li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -18%;
+  width: 20%;
+  height: 3px;
+  background-color: #d78988;
+  transform: rotate(90deg);
+}
+
+/* Eliminar el borde superior del primer elemento */
+.list li:first-child {
+  border-top: none;
+}
+
+/* Icono de eliminar */
+.list li .bi-trash-fill {
+  color: #000b0c;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Icono de eliminar al pasar el mouse */
+.list li .bi-trash-fill:hover {
+  color: #d78988;
+  cursor: pointer;
+}
+
+/* Icono de completar */
+.list li .bi-check-square-fill {
+  color: #000b0c;
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Icono de completar al pasar el mouse */
+.list li .bi-check-square-fill:hover {
+  color: #4be195;
+  cursor: pointer;
+}
+
+/* Tarea completada */
+.list li.completed {
+  text-decoration: line-through;
+  color: #4be195;
+  background-color: #001617;
+}
+
+/* Icono de completar cuando la tarea está marcada */
+.list li.completed .bi-check-square-fill {
+  color: #4be195;
+}
+
+/* Mensajes de tarea agregada y eliminada */
+.tarea-add,
+.tarea-delete {
+  font-size: 1.2rem;
+  background-color: #4ba914;
+  color: #ffecea;
+  padding: 10px 20px;
+  user-select: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 1000;
+}
+
+/* Estilo para el mensaje de tarea eliminada */
+.tarea-delete {
+  background-color: #db4755;
+}
+
+/* Clase activa para mostrar los mensajes */
+.tarea-add.show,
+.tarea-delete.show {
+  opacity: 1;
+  visibility: visible;
+}
