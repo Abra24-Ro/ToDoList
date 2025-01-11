@@ -3,11 +3,13 @@ const campoEntrada = document.querySelector(".input");
 const listaUl = document.querySelector(".list");
 const tareaAdd = document.querySelector(".tarea-add");
 const tareaDelete = document.querySelector(".tarea-delete");
+const noTareas = document.querySelector(".no-tareas"); // Elemento de "No hay tareas"
 
 // Ocultar los mensajes al cargar la página
 window.addEventListener("DOMContentLoaded", () => {
   tareaAdd.style.display = "none";
   tareaDelete.style.display = "none";
+  actualizarNoTareas(); // Comprobar si hay tareas al cargar la página
 });
 
 // Cargar tareas desde LocalStorage
@@ -30,6 +32,7 @@ form.addEventListener("submit", (event) => {
   mostrarMensaje(tareaAdd);
   campoEntrada.value = "";
   actualizarLocalStorage();
+  actualizarNoTareas(); // Actualizar el mensaje de "No hay tareas"
 });
 
 // Función para agregar tareas
@@ -56,6 +59,7 @@ function agregarTarea(tarea, completada) {
   checkBoton.addEventListener("click", () => {
     selectLi.classList.toggle("completed");
     actualizarLocalStorage();
+    actualizarNoTareas(); // Actualizar el mensaje de "No hay tareas"
   });
 
   // Evento para borrar tarea
@@ -63,6 +67,7 @@ function agregarTarea(tarea, completada) {
     selectLi.remove();
     mostrarMensaje(tareaDelete);
     actualizarLocalStorage();
+    actualizarNoTareas(); // Actualizar el mensaje de "No hay tareas"
   });
 }
 
@@ -81,15 +86,24 @@ function actualizarLocalStorage() {
 // Mostrar mensaje de éxito durante 2 segundos
 function mostrarMensaje(elemento) {
   elemento.style.display = "block";
-  elemento.style.opacity = "1";
+  elemento.classList.add("tarea-show");
 
   // Desaparece gradualmente
   setTimeout(() => {
-    elemento.style.opacity = "0";
+    elemento.classList.remove("tarea-show");
   }, 1500);
 
   // Se oculta completamente después de 2 segundos
   setTimeout(() => {
     elemento.style.display = "none";
   }, 2000);
+}
+
+// Función para actualizar el mensaje de "No hay tareas"
+function actualizarNoTareas() {
+  if (listaUl.children.length === 0) {
+    noTareas.style.display = "block"; // Mostrar mensaje "No hay tareas"
+  } else {
+    noTareas.style.display = "none"; // Ocultar mensaje si hay tareas
+  }
 }

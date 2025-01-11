@@ -56,7 +56,6 @@ input::placeholder {
   position: relative;
   width: 100%;
   max-width: 400px;
-
 }
 
 /* Estilo de cada tarea */
@@ -70,9 +69,7 @@ input::placeholder {
   background-color: #fff; /* Fondo blanco para destacar */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  
 }
-
 
 /* Borde superior de cada tarea */
 .list li::before {
@@ -156,15 +153,19 @@ input::placeholder {
   color: #ffecea;
   padding: 10px 20px;
   user-select: none;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transform: translateX(-200%);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  z-index: 1000;
+  transition: all 0.2s ease-in-out;
+  margin: 10px;
+  border-radius: 10px 0px;
+}
+
+.tarea-show {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Estilo para el mensaje de tarea eliminada */
@@ -172,9 +173,9 @@ input::placeholder {
   background-color: #db4755;
 }
 
-/* Clase activa para mostrar los mensajes */
-.tarea-add.show,
-.tarea-delete.show {
-  opacity: 1;
-  visibility: visible;
+.no-tareas {
+  font-size: 1.2rem;
+  color: #db4755;
+  margin-top: 10px;
+  display: none; /* Ocultar inicialmente */
 }
